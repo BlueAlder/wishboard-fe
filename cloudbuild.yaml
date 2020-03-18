@@ -10,4 +10,4 @@ steps:
 
   # Deploy to GAE
   - name: 'gcr.io/cloud-builders/gcloud'
-    args
+    args: ['app', 'deploy' '--version=prod']
