@@ -1,0 +1,8 @@
+<form (ngSubmit)="createNewBoard(boardName)">
+  <mat-form-field>
+    <mat-label>Board Name</mat-label>
+    <input [(ngModel)]="boardName" name="board-name" matInput placeholder="Wallet Wish's"/>
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary">Create a new board</button>
+
+</form>

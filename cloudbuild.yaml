@@ -1,0 +1,13 @@
+steps:
+
+  # Install required dependencies
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install']
+
+  # Build production files
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build', '--prod']
+
+  # Deploy to GAE
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args

@@ -1,0 +1,16 @@
+<h1 *ngIf="loading">Loading...</h1>
+
+<div *ngIf="!loading">
+  <h1>Board name: {{board.name}}</h1>
+  <form (ngSubmit)="addNewPin(newPinUrl)">
+    <mat-form-field>
+      <mat-label>Add an item</mat-label>
+      <input [(ngModel)]="newPinUrl" name="board-name" matInput placeholder="https://www.theiconic.com.au/club-fleece-jogger-pants-902749.html"/>
+    </mat-form-field>
+  </form>
+
+  <mat-card *ngFor="let pin of board.pins">
+    <mat-card-header>{{pin.title}}</mat-card-header>
+    <img [src]="pin.img" style="height: 100px"/>
+  </mat-card>
+</div>
