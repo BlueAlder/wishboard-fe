@@ -1,11 +1,13 @@
 steps:
 
   # Install required dependencies
-  - name: 'gcr.io/cloud-builders/npm'
+  - name: 'node:12.16.1'
+    entrypoint: 'npm'
     args: ['install']
 
   # Build production files
-  - name: 'gcr.io/cloud-builders/npm'
+  - name: 'node:12.16.1'
+    entrypoint: 'npm'
     args: ['run', 'build', '--prod']
 
   # Deploy to GAE
