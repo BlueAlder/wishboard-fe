@@ -1,8 +1,23 @@
+<div class="row justify-content-center">
 <form (ngSubmit)="createNewBoard(boardName)">
-  <mat-form-field>
+  <mat-form-field class='board-name-input' >
     <mat-label>Board Name</mat-label>
-    <input [(ngModel)]="boardName" name="board-name" matInput placeholder="Wallet Wish's"/>
+    <input  [(ngModel)]="boardName" name="board-name" matInput placeholder="Wallet Wish's"/>
   </mat-form-field>
-  <button type="submit" mat-raised-button color="primary">Create a new board</button>
+  <div class="row justify-content-center">
+    <button type="submit" mat-raised-button color="primary">Create a new board</button>
+  </div>
 
 </form>
+
+</div>
+<div *ngIf="loading"  class="row justify-content-center ">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="viewed-boards">
+  <div *ngFor="let boardId of visitedBoards" class="row col-12">
+    <p> You have visited {{boardId}}</p>
+  </div>
+</div>
+

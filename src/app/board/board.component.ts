@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Board, BoardService} from '../services/board.service';
 import {ActivatedRoute} from '@angular/router';
+import {LocalStorageService} from '../services/local-storage.service';
 
 @Component({
   selector: 'app-board',
@@ -14,7 +15,8 @@ export class BoardComponent implements OnInit {
   newPinUrl = '';
 
   constructor(private boardService: BoardService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -28,9 +30,13 @@ export class BoardComponent implements OnInit {
   async getBoardData(id: number) {
     this.loading = true;
     console.log(id);
+    // Get the data from the board
     const response = await this.boardService.getBoard(id).toPromise();
+
+    // assuming all goes well and save to local storage
     this.board = response.data;
     console.log(response);
+    this.localStorageService.addToViewedBoards(this.board.id);
     this.loading = false;
   }
 
@@ -38,5 +44,9 @@ export class BoardComponent implements OnInit {
     this.loading = true;
     const response = await this.boardService.createPin(url, this.board.id).toPromise();
     this.getBoardData(this.board.id);
+  }
+
+  calculateBoardPriceTotal() {
+    return this.board.pins.reduce((total, pin) => total += pin.price, 0);
   }
 }

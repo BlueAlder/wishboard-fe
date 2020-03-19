@@ -36,8 +36,9 @@ export interface Board {
 }
 
 export interface Pin {
+  prod_url: string;
   title: string;
-  price: string;
+  price: number;
   img: string;
 }
 

@@ -12,12 +12,16 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import { BoardComponent } from './board/board.component';
 import {MatCardModule} from '@angular/material/card';
+import { PinComponent } from './pin/pin.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    BoardComponent
+    BoardComponent,
+    PinComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
