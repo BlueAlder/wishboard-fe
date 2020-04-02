@@ -3,17 +3,18 @@
 <div *ngIf="!loading">
   <h1>{{board.name}}</h1>
   <form (ngSubmit)="addNewPin(newPinUrl)">
-    <mat-form-field>
+    <mat-form-field class="url-input">
       <mat-label>Add an item</mat-label>
       <input [(ngModel)]="newPinUrl" name="board-name" matInput placeholder="https://www.theiconic.com.au/club-fleece-jogger-pants-902749.html"/>
     </mat-form-field>
   </form>
 
   <div class="row justify-content-center">
-    <div *ngFor="let pin of board.pins" class="col-3 pin-card">
-      <app-pin  [pin]="pin"></app-pin>
+    <div *ngFor="let pin of board.pins" class="col-4 pin-card">
+      <app-pin  (deleted)="removePin($event)" [pin]="pin"></app-pin>
     </div>
   </div>
   <span>Sum: {{calculateBoardPriceTotal() | currency}}</span>
 
 </div>
+

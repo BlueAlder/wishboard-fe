@@ -35,7 +35,6 @@ export class BoardComponent implements OnInit {
 
     // assuming all goes well and save to local storage
     this.board = response.data;
-    console.log(response);
     this.localStorageService.addToViewedBoards(this.board.id);
     this.loading = false;
   }
@@ -48,5 +47,10 @@ export class BoardComponent implements OnInit {
 
   calculateBoardPriceTotal() {
     return this.board.pins.reduce((total, pin) => total += pin.price, 0);
+  }
+
+  removePin(pinId: number) {
+
+    this.board.pins = this.board.pins.filter(pin => pin.id !== pinId);
   }
 }

@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {formatNumber} from '@angular/common';
 import {environment} from '../../environments/environment';
 
 @Injectable({
@@ -22,11 +21,25 @@ export class BoardService {
   }
 
   createPin(url: string, boardId: number) {
-    const body = new HttpParams()
-      .set('url', url)
-      .set('board', boardId.toString());
+    const body = {
+      url,
+      boardId
+    };
+    /*const body = {
+      url: url,
+      boardId: boardId
+    };*/
     return this.http.post<ApiResponse<Pin>>(`${environment.api_url}/api/pin`, body);
+  }
 
+  // tslint:disable-next-line:variable-name
+  deletePin(_id: number, _boardId: number) {
+    const body = {
+      id: _id,
+      boardId: _boardId,
+    };
+    console.log(body);
+    return this.http.request('delete', `${environment.api_url}/api/pin`, {body});
   }
 }
 
@@ -37,7 +50,9 @@ export interface Board {
 }
 
 export interface Pin {
-  prod_url: string;
+  id: number;
+  boardId: number;
+  prodUrl: string;
   title: string;
   price: number;
   img: string;

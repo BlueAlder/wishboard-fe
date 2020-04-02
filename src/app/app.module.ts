@@ -14,6 +14,7 @@ import { BoardComponent } from './board/board.component';
 import {MatCardModule} from '@angular/material/card';
 import { PinComponent } from './pin/pin.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { HostnameToMarketplacePipe } from './hostname-to-marketplace.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     HomeComponent,
     BoardComponent,
     PinComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    HostnameToMarketplacePipe
   ],
   imports: [
     BrowserModule,
