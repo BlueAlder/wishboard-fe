@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {Board} from './board.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,16 +19,16 @@ export class LocalStorageService {
 
   }
   // TODO add functionality for when the localstorage is malformed
-  addToViewedBoards(boardId: number) {
+  addToViewedBoards(visitedBoard: Board) {
     const storedBoards = localStorage.getItem(this.boardSaveName);
     if (storedBoards === null) {
-      const boards = JSON.stringify([boardId]);
+      const boards = JSON.stringify([{id: visitedBoard.id, name: visitedBoard.name}]);
       localStorage.setItem(this.boardSaveName, boards);
     } else {
       const boards = JSON.parse(storedBoards);
-      console.log(boards);
-      if (!boards.includes(boardId)) {
-        boards.push(boardId);
+      console.log(board => board);
+      if (!boards.some(board => board.id === visitedBoard.id)) {
+        boards.push({id: visitedBoard.id, name: visitedBoard.name});
         localStorage.setItem(this.boardSaveName, JSON.stringify(boards));
 
       }

@@ -1,4 +1,4 @@
-<mat-card class="pin-card col-12">
+<mat-card [ngClass]="{'deleting': isDeleting}" class="pin-card col-12">
   <span style="font-weight: bold">{{pin.prodUrl | hostnameToMarketplace}} </span>
   <mat-card-header class="pin-header">{{ pin.title}}</mat-card-header>
   <div class="row justify-content-center">
@@ -15,3 +15,8 @@
     </div>
   </mat-card-actions>
 </mat-card>
+<div *ngIf="isDeleting" class="deleting-spinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+

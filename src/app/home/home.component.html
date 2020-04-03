@@ -16,8 +16,8 @@
 </div>
 
 <div class="viewed-boards">
-  <div *ngFor="let boardId of visitedBoards" class="row col-12">
-    <a [href]="'/boards/'+boardId"> You have visited {{boardId}}</a>
+  <div *ngFor="let board of visitedBoards" class="row col-12">
+    <a [href]="'/boards/'+board.id"> You have visited {{board.name}}</a>
   </div>
 </div>
 

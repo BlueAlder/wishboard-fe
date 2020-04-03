@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BoardService, Pin} from '../services/board.service';
+import {throwError} from 'rxjs';
 
 @Component({
   selector: 'app-pin',
@@ -9,7 +10,9 @@ import {BoardService, Pin} from '../services/board.service';
 export class PinComponent implements OnInit {
 
   @Input() pin: Pin;
-  @Output() deleted = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<Pin>();
+
+  isDeleting = false;
 
   constructor(private boardService: BoardService) { }
 
@@ -23,8 +26,14 @@ export class PinComponent implements OnInit {
   }
 
   async deletePin() {
-    console.log('hi');
-    // await this.boardService.deletePin(this.pin.id, this.pin.boardId).toPromise();
-    this.deleted.emit(this.pin.id);
+    // console.log(this.pin);
+    this.isDeleting = true;
+    await this.boardService.deletePin(this.pin.id, this.pin.boardId).toPromise()
+      .catch(err => {
+        this.isDeleting = false;
+        throw Error('Bruh');
+
+      });
+    this.delete.emit(this.pin);
   }
 }

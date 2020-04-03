@@ -25,10 +25,6 @@ export class BoardService {
       url,
       boardId
     };
-    /*const body = {
-      url: url,
-      boardId: boardId
-    };*/
     return this.http.post<ApiResponse<Pin>>(`${environment.api_url}/api/pin`, body);
   }
 

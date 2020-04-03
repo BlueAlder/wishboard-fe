@@ -10,8 +10,8 @@
   </form>
 
   <div class="row justify-content-center">
-    <div *ngFor="let pin of board.pins" class="col-4 pin-card">
-      <app-pin  (deleted)="removePin($event)" [pin]="pin"></app-pin>
+    <div *ngFor="let pin of board.pins" class="col-3 pin-card">
+      <app-pin (delete)="deletePin($event)" [pin]="pin"></app-pin>
     </div>
   </div>
   <span>Sum: {{calculateBoardPriceTotal() | currency}}</span>
