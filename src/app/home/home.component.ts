@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   async createNewBoard(name) {
     this.loading = true;
     const boardResponse = await this.boardService.createBoard(name).toPromise();
-    console.log(boardResponse);
+    // console.log(boardResponse);
     this.router.navigate([`/board/${boardResponse.data.id}`]);
   }
 

@@ -4,58 +4,64 @@
     <li *ngFor="let marketplace of supported_marketplaces">{{marketplace}}</li>
   </ul>
 </div>-->
-
-<div class="col-lg-2  board-info justify-content-end">
-  <app-board-info (updateBoard)="updateBoard($event)" [board]="board"></app-board-info>
-</div>
-
-<div class="main-content container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-12 col-lg-12">
-      <h1 *ngIf="loading">Loading...</h1>
 
-      <div *ngIf="!loading">
-        <div class="row">
-          <div class="col-12">
-            <h1>{{board.name}}</h1>
+    <div  class="col-2  board-info justify-content-end">
+      <app-board-info *ngIf="!loading" (updateBoard)="updateBoard($event)" [board]="board"></app-board-info>
+    </div>
+
+    <div class="main-content col-10" >
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <h1 *ngIf="loading">Loading...</h1>
+
+          <div *ngIf="!loading">
+            <div class="row">
+              <div class="col-12">
+                <h1>{{board.name}}</h1>
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <mat-form-field class="col-8">
+                <mat-label>Search</mat-label>
+                <input matInput [(ngModel)]="searchQuery">
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+
+              <button (click)="openPinDialog()" mat-fab>
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+
+            <div class="row justify-content-center">
+              <section class="example-section">
+                <mat-checkbox *ngFor="let marketplace of supported_marketplaces"  class="filter-margin" >{{marketplace}}</mat-checkbox>
+              </section>
+            </div>
+
+            <div cdkDropList (cdkDropListDropped)="drop($event)" class="row justify-content-center">
+              <div *ngFor="let pin of board.pins | searchFilter: searchQuery" class="col-xl-2 col-lg-3 col-sm-12 pin-card">
+                <app-pin (delete)="deletePin($event)" [pin]="pin">
+                  <div cdkDragHandle></div>
+                </app-pin>
+              </div>
+              <div *ngIf="addingPin" class="col-3 pin-card">
+                <app-pin [isSkeleton]="true"></app-pin>
+              </div>
+            </div>
+
+
           </div>
         </div>
-
-        <div class="row justify-content-center">
-          <mat-form-field class="col-8">
-            <mat-label>Search</mat-label>
-            <input matInput [(ngModel)]="searchQuery">
-            <mat-icon matSuffix>search</mat-icon>
-          </mat-form-field>
-
-          <button (click)="openPinDialog()" mat-fab>
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
-
-        <div class="row justify-content-center">
-          <section class="example-section">
-            <mat-checkbox *ngFor="let marketplace of supported_marketplaces"  class="filter-margin" >{{marketplace}}</mat-checkbox>
-          </section>
-        </div>
-
-        <div cdkDropList (cdkDropListDropped)="drop($event)" class="row justify-content-center">
-          <div *ngFor="let pin of board.pins | searchFilter: searchQuery" class="col-md-3 col-sm-12 pin-card">
-            <app-pin (delete)="deletePin($event)" [pin]="pin">
-              <div cdkDragHandle></div>
-            </app-pin>
-          </div>
-          <div *ngIf="addingPin" class="col-3 pin-card">
-            <app-pin [isSkeleton]="true"></app-pin>
-          </div>
-        </div>
-
-
       </div>
+
     </div>
   </div>
+  </div>
 
-</div>
+
 
 
 

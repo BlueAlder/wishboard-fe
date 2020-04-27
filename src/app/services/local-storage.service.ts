@@ -26,7 +26,7 @@ export class LocalStorageService {
       localStorage.setItem(this.boardSaveName, boards);
     } else {
       const boards = JSON.parse(storedBoards);
-      console.log(board => board);
+      // console.log(board => board);
       if (!boards.some(board => board.id === visitedBoard.id)) {
         boards.push({id: visitedBoard.id, name: visitedBoard.name});
         localStorage.setItem(this.boardSaveName, JSON.stringify(boards));

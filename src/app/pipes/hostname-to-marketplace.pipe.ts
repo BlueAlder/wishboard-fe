@@ -9,7 +9,6 @@ export class HostnameToMarketplacePipe implements PipeTransform {
   transform(urlInput: string): string {
     const parsedUrl = url.parse(urlInput);
     const hostname = parsedUrl.hostname;
-    console.log(hostname);
     switch (hostname) {
       case 'www.theiconic.com.au':
         return 'The Iconic';

@@ -33,7 +33,7 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.route.params.subscribe(params => {
-      console.log(params);
+      // console.log(params);
       this.getBoardData(parseInt(params.id, 10));
     });
 
@@ -42,13 +42,13 @@ export class BoardComponent implements OnInit {
 
   async getBoardData(id: number) {
     this.loading = true;
-    console.log(id);
+    // console.log(id);
     // Get the data from the board
     const response = await this.boardService.getBoard(id).toPromise()
       .catch(err => {
         console.error(err);
         if (err.status === 400) {
-          console.log('Cannot find board :(');
+          // console.log('Cannot find board :(');
           this.notificationService.showError('Cannot find da board sorry :(');
           this.router.navigate(['']);
         }

@@ -41,7 +41,7 @@ export class BoardService {
       id: _id,
       boardId: _boardId,
     };
-    console.log(body);
+    // console.log(body);
     return this.http.request('delete', `${environment.api_url}/api/pin`, {body});
   }
 }

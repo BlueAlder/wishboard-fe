@@ -11,4 +11,7 @@
       <app-loading-spinner *ngIf="updating"></app-loading-spinner>
     </div>
   </mat-card-actions>
+  <mat-chip-list>
+    <mat-chip *ngFor="let tag of availableTags">{{tag}}<mat-icon matChipRemove>cancel</mat-icon></mat-chip>
+  </mat-chip-list>
 </mat-card>

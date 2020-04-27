@@ -19,16 +19,16 @@ export class PinComponent implements OnInit {
   constructor(private boardService: BoardService) { }
 
   ngOnInit(): void {
-    console.log(this.pin);
+    // console.log(this.pin);
   }
 
   openLink(prodUrl: string) {
-    console.log('hi');
+    // console.log('hi');
     window.open(prodUrl, '_blank');
   }
 
   async deletePin() {
-    console.log(this.pin);
+    // console.log(this.pin);
     this.isDeleting = true;
     await this.boardService.deletePin(this.pin.id, this.pin.boardId).toPromise()
       .catch(err => {

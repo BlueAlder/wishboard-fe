@@ -22,6 +22,7 @@ export class BoardInfoComponent implements OnInit {
   constructor(private boardService: BoardService) { }
 
   ngOnInit(): void {
+    console.log(this.availableTags);
     // this.boardTotal = this.board.pins.reduce((total, currentPin) => total + currentPin.price, 0);
     // this.boardMarketplaces = this.board.pins.filter((pin) => pin.marketplace )
   }
@@ -41,6 +42,16 @@ export class BoardInfoComponent implements OnInit {
 
   showMarketplaces() {
    return  Array.from(new Set(this.board.pins.map(pin => pin.marketplace))).join(', ');
+  }
+
+  public get availableTags() {
+    let tags = [];
+    for (let pin of this.board.pins) {
+      tags = tags.concat(pin.tags);
+
+    }
+
+    return [...new Set(tags)];
   }
 
 }
