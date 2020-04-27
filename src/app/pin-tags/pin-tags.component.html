@@ -1,0 +1,13 @@
+<mat-accordion displayMode="flat" style="width: 100%">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Tags</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-chip-list>
+      <mat-chip *ngFor="let tag of pin.tags">{{tag}}</mat-chip>
+<!--      <input placeholder="Add tag" [matChipInputFor]=""-->
+    </mat-chip-list>
+
+  </mat-expansion-panel>
+</mat-accordion>

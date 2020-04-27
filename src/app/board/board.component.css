@@ -3,5 +3,20 @@
 }
 
 .url-input {
-  width: 60%;
+  width: 30vw;
+}
+
+.board-info {
+  margin-top: 100px;
+  position: fixed;
+  right: 10%;
+}
+
+.supported-marketplaces {
+  position: absolute;
+  margin-left: 10px;
+}
+
+.filter-margin {
+  margin-left: 10px;
 }

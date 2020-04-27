@@ -1,11 +1,15 @@
 runtime: nodejs12
+
 #service: wishboard-frontend
 
 handlers:
   - url: /(.*\.(gif|png|jpg|css|js)(|\.map))$
     static_files: dist/wishboard-frontend/\1
     upload: dist/wishboard-frontend/(.*)(|\.map)
+    secure: always
 
   - url: /.*
+    secure: always
     static_files: dist/wishboard-frontend/index.html
     upload: dist/wishboard-frontend/index.html
+

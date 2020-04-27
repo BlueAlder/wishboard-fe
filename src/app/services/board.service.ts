@@ -20,6 +20,13 @@ export class BoardService {
     return this.http.get<ApiResponse<Board>>(`${environment.api_url}/api/board/${id}`);
   }
 
+  updateBoard(id: number) {
+    const body = {
+      boardId: id
+    };
+    return this.http.post<ApiResponse<Board>>(`${environment.api_url}/api/board/update`, body);
+  }
+
   createPin(url: string, boardId: number) {
     const body = {
       url,
@@ -42,6 +49,7 @@ export class BoardService {
 export interface Board {
   id: number;
   name: string;
+  lastUpdated: string;
   pins: Pin[];
 }
 
@@ -52,6 +60,8 @@ export interface Pin {
   title: string;
   price: number;
   img: string;
+  marketplace: string;
+  tags: string[];
 }
 
 export interface ApiResponse<T> {

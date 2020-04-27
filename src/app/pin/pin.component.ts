@@ -10,9 +10,11 @@ import {throwError} from 'rxjs';
 export class PinComponent implements OnInit {
 
   @Input() pin: Pin;
+  @Input() isSkeleton = false;
   @Output() delete = new EventEmitter<Pin>();
 
   isDeleting = false;
+
 
   constructor(private boardService: BoardService) { }
 
@@ -26,7 +28,7 @@ export class PinComponent implements OnInit {
   }
 
   async deletePin() {
-    // console.log(this.pin);
+    console.log(this.pin);
     this.isDeleting = true;
     await this.boardService.deletePin(this.pin.id, this.pin.boardId).toPromise()
       .catch(err => {

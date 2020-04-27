@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-title>Board Details</mat-card-title>
+  <mat-card-content>
+    <p><span style="font-weight: bold;">Total Cost:</span> {{calculateTotal() | currency}} AUD</p>
+    <p><span style="font-weight: bold;">Marketplaces:</span> {{showMarketplaces()}}</p>
+    <p><span style="font-weight: bold;">Last updated:</span> {{board.lastUpdated |date : 'short'}}</p>
+  </mat-card-content>
+  <mat-card-actions >
+    <div class="row justify-content-center">
+      <button *ngIf="!updating" (click)="updateBoardPins()" class="justify-content-end" mat-stroked-button>UPDATE</button>
+      <app-loading-spinner *ngIf="updating"></app-loading-spinner>
+    </div>
+  </mat-card-actions>
+</mat-card>

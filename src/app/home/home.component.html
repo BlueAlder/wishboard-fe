@@ -1,23 +1,33 @@
-<div class="row justify-content-center">
-<form (ngSubmit)="createNewBoard(boardName)">
-  <mat-form-field class='board-name-input' >
-    <mat-label>Board Name</mat-label>
-    <input  [(ngModel)]="boardName" name="board-name" matInput placeholder="Wallet Wish's"/>
-  </mat-form-field>
+<div class="main-content container">
   <div class="row justify-content-center">
-    <button type="submit" mat-raised-button color="primary">Create a new board</button>
+      <!--<div class="row">
+        <h1>Wish Board</h1>
+      </div>-->
+      <img src="../../assets/shooting-star.png" height="100px"/>
+  </div>
+  <div class="row justify-content-center">
+
+    <div class="row">
+      <form class="col-12" (ngSubmit)="createNewBoard(boardName)">
+        <mat-form-field class='board-name-input'>
+          <mat-label>Board Name</mat-label>
+          <input [(ngModel)]="boardName" name="board-name" matInput placeholder="Wallet Wish's"/>
+        </mat-form-field>
+        <div class="row justify-content-center">
+          <button type="submit" mat-raised-button color="primary">Create a new board</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="loading" class="row justify-content-center ">
+    <app-loading-spinner></app-loading-spinner>
   </div>
 
-</form>
-
-</div>
-<div *ngIf="loading"  class="row justify-content-center ">
-  <app-loading-spinner></app-loading-spinner>
-</div>
-
-<div class="viewed-boards">
-  <div *ngFor="let board of visitedBoards" class="row col-12">
-    <a [href]="'/boards/'+board.id"> You have visited {{board.name}}</a>
+  <div class="viewed-boards">
+    <div *ngFor="let board of visitedBoards" class="row col-12">
+      <a [href]="'/board/'+board.id"> You have visited {{board.name}}</a>
+    </div>
   </div>
-</div>
 
+
+</div>

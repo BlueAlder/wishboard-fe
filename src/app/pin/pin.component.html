@@ -1,21 +1,31 @@
-<mat-card [ngClass]="{'deleting': isDeleting}" class="pin-card col-12">
-  <span style="font-weight: bold">{{pin.prodUrl | hostnameToMarketplace}} </span>
-  <mat-card-header class="pin-header">{{ pin.title}}</mat-card-header>
-  <div class="row justify-content-center">
-    <img [src]="pin.img" class="pin-image"/>
-  </div>
-  <div class="row justify-content-center">
-    <mat-card-content class="price">{{pin.price | currency}} AUD</mat-card-content>
+<mat-card *ngIf="!isSkeleton" [ngClass]="{'deleting': isDeleting}" class="pin-card col-12" cdkDrag>
+    <span style="font-weight: bold">{{pin.marketplace}} </span>
+    <mat-card-header class="pin-header" [matTooltip]="pin.title">{{ pin.title}}</mat-card-header>
+    <div class="row justify-content-center pin-div">
+      <img [src]="pin.img" class="pin-image"/>
+    </div>
+    <div class="row justify-content-center">
+      <mat-card-content class="price">{{pin.price | currency}} AUD</mat-card-content>
+      <mat-chip-list>
+<!--        <mat-chip style="background-color: green">green</mat-chip>-->
+      </mat-chip-list>
+    </div>
+  <div class="row">
+    <app-pin-tags [pin]="pin" style="width:100%"></app-pin-tags>
   </div>
 
-  <mat-card-actions>
-    <div class="row justify-content-around">
-      <button class="" mat-button (click)="openLink(pin.prodUrl)">VIEW</button>
-      <button class="s delete-button" mat-button (click)="deletePin()">DELETE</button>
-    </div>
-  </mat-card-actions>
+    <mat-card-actions>
+      <div class="row justify-content-around">
+        <button class="" mat-button (click)="openLink(pin.prodUrl)">VIEW</button>
+        <button class="s delete-button" mat-button (click)="deletePin()">DELETE</button>
+      </div>
+    </mat-card-actions>
 </mat-card>
-<div *ngIf="isDeleting" class="deleting-spinner">
+
+<mat-card *ngIf="isSkeleton">
+  <nz-skeleton [nzParagraph]="{ rows: 12}"></nz-skeleton>
+</mat-card>
+<div *ngIf="isDeleting || isSkeleton" class="deleting-spinner">
   <app-loading-spinner></app-loading-spinner>
 </div>
 

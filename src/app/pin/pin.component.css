@@ -2,9 +2,7 @@
   color: red;
 }
 
-.pin-card {
-  /*height: 30vh;*/
-}
+
 
 .pin-header {
   white-space: nowrap;
@@ -14,8 +12,11 @@
 }
 
 .pin-image {
-  height: 300px;
+  /*height: 300px;*/
+  /*width: 100%;*/
+  max-height: 300px;
 }
+
 
 .price {
   font-weight: bold;
@@ -38,6 +39,13 @@
   left: 50%; /* position the left edge of the element at the middle of the parent */
 
   transform: translate(-50%, -50%);
-
-
 }
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
