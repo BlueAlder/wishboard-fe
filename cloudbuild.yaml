@@ -8,7 +8,7 @@ steps:
   # Build production files
   - name: 'node:12.16.1'
     entrypoint: 'npm'
-    args: ['run', 'build', '--prod']
+    args: ['run', 'build-prod']
 
   # Deploy to GAE
   - name: 'gcr.io/cloud-builders/gcloud'
