@@ -6,6 +6,7 @@ export const environment = {
     'Amazon',
     'The Iconic',
     'Asos',
-    'HYPE DC'
+    'HYPE DC',
+    'BING'
   ]
 };
