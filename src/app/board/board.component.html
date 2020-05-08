@@ -43,11 +43,12 @@
 
             <div cdkDropList (cdkDropListDropped)="drop($event)" class="row justify-content-center">
               <div *ngFor="let pin of board.pins | searchFilter: searchQuery" class="col-xl-2 col-lg-3 col-sm-12 pin-card">
+<!--              <div *ngFor="let pin of board.pins" class="col-xl-2 col-lg-3 col-sm-12 pin-card">-->
                 <app-pin (delete)="deletePin($event)" [pin]="pin">
                   <div cdkDragHandle></div>
                 </app-pin>
               </div>
-              <div *ngIf="addingPin" class="col-3 pin-card">
+              <div *ngIf="addingPin" class="col-xl-2 col-lg-3 col-sm-12 pin-card pin-card">
                 <app-pin [isSkeleton]="true"></app-pin>
               </div>
             </div>

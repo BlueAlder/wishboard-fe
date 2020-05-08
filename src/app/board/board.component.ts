@@ -69,6 +69,7 @@ export class BoardComponent implements OnInit {
     this.boardService.createPin(url, this.board.id).toPromise()
       .then((response) => {
         this.addingPin = false;
+        console.log(response.data);
         this.board.pins.push(response.data);
       })
       .catch(err => {
